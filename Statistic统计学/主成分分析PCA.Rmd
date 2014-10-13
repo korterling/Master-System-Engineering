@@ -1,0 +1,29 @@
+---
+title: "PCA主成分分析"
+author: "HarryZhu"
+date: "October 13, 2014"
+output: html_document
+---
+# Data Initilization
+
+```{r}
+id<-c("a","b","c","d")
+x<-c(1,9,2,5)
+y<-(-2:1)/4
+z<-c(8,5,1,6)
+m<-c(2,-2,10,-5)
+car<- data.frame(x,y,z,m)
+rownames(car)=id
+car
+```
+
+
+```{r,fig.showtext=TRUE, fig.align='center'}
+pca<-princomp(car,cor = T)
+summary(pca)##主成分的方差表
+print(pca$loadings,digits=8,cutoff=0)##具体的过程
+#原来matrix %*% 主成分得分矩阵  = 主成分分数
+pca$scores #主成分得分
+biplot(pca)#解释量
+plot(pca)##解释量
+```
